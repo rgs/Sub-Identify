@@ -63,7 +63,7 @@ original name.
 
 =head1 AUTHOR
 
-Written by Rafael Garcia-Suarez (rgarciasuarez at mandriva dot com).
+Written by Rafael Garcia-Suarez (rgarciasuarez at gmail dot com).
 
 This program is free software; you may redistribute it and/or modify it under
 the same terms as Perl itself.
