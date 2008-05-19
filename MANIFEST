@@ -1,6 +1,7 @@
 lib/Sub/Identify.pm
 t/01basic.t
 t/02errors.t
+t/pod.t
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
