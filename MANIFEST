@@ -3,5 +3,6 @@ t/01basic.t
 t/02errors.t
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
 Changes
 META.yml                                 Module meta-data (added by MakeMaker)
