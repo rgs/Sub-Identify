@@ -5,7 +5,7 @@ use Exporter;
 
 $VERSION = '0.02';
 @ISA = ('Exporter');
-%EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname) ]);
+%EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
 
 use strict;
 
