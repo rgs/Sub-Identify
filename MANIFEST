@@ -1,0 +1,7 @@
+lib/Sub/Identify.pm
+t/01basic.t
+t/02errors.t
+Makefile.PL
+MANIFEST
+Changes
+META.yml                                 Module meta-data (added by MakeMaker)
