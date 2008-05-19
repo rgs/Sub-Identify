@@ -5,7 +5,7 @@ use Exporter;
 
 $VERSION = '0.02';
 @ISA = ('Exporter');
-%EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname) ]);
+%EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
 
 use strict;
 
@@ -31,6 +31,11 @@ sub sub_fullname {
     $cv->GV->STASH->NAME . '::' . $cv->GV->NAME;
 }
 
+sub get_code_info {
+    my $cv = &_cv or return undef;
+    ($cv->GV->STASH->NAME, $cv->GV->NAME);
+}
+
 1;
 
 __END__
@@ -53,10 +58,14 @@ Sub::Identify - Retrieve names of code references
 C<Sub::Identify> allows you to retrieve the real name of code references. For
 this, it uses perl's introspection mechanism, provided by the C<B> module.
 
-It provides three functions : C<sub_name> returns the name of the
+It provides four functions : C<sub_name> returns the name of the
 subroutine (or C<__ANON__> if it's an anonymous code reference),
 C<stash_name> returns its package, and C<sub_fullname> returns the
 concatenation of the two.
+
+The fourth function, C<get_code_info>, returns a list of two elements,
+the package and the subroutine name (in case of you want both and are worried
+by the speed.)
 
 In case of subroutine aliasing, those functions always return the
 original name.

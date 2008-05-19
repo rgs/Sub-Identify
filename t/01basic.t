@@ -1,6 +1,6 @@
 #!perl
 
-use Test::More tests => 20;
+use Test::More tests => 30;
 
 BEGIN { use_ok 'Sub::Identify', ':all' }
 
@@ -27,10 +27,22 @@ is( sub_fullname( \&vamp::spike ), 'vamp::spike' );
 is( sub_fullname( \&slayer ), 'main::buffy' );
 is( sub_fullname( \&human::william ), 'vamp::spike' );
 
+is( join('*', get_code_info( \&sub_fullname )), 'Sub::Identify*sub_fullname' );
+is( join('*', get_code_info( \&buffy )), 'main*buffy' );
+is( join('*', get_code_info( \&vamp::spike )), 'vamp*spike' );
+is( join('*', get_code_info( \&slayer )), 'main*buffy' );
+is( join('*', get_code_info( \&human::william )), 'vamp*spike' );
+
 sub xander;
+sub vamp::drusilla;
 is( sub_name( \&xander ), 'xander', 'undefined subroutine' );
+is( sub_fullname( \&xander ), 'main::xander', 'undefined subroutine' );
+is( join('*', get_code_info( \&xander )), 'main*xander', 'undefined subroutine' );
+is( sub_name( \&vamp::drusilla ), 'drusilla', 'undefined subroutine' );
+is( sub_fullname( \&vamp::drusilla ), 'vamp::drusilla', 'undefined subroutine' );
 
 is( sub_name( sub {} ), '__ANON__' );
 my $anon = sub {};
 is( stash_name( $anon ), 'main' );
 is( sub_fullname( $anon ), 'main::__ANON__' );
+is( join('*', get_code_info( sub { 'ah non' } )), 'main*__ANON__' );
