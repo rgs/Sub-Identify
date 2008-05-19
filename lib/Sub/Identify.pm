@@ -70,9 +70,9 @@ by the speed.)
 In case of subroutine aliasing, those functions always return the
 original name.
 
-=head1 AUTHOR
+=head1 LICENSE
 
-Written by Rafael Garcia-Suarez (rgarciasuarez at gmail dot com).
+(c) Rafael Garcia-Suarez (rgarciasuarez at gmail dot com) 2005, 2008
 
 This program is free software; you may redistribute it and/or modify it under
 the same terms as Perl itself.
