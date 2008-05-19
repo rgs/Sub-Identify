@@ -1,6 +1,6 @@
 #!perl
 
-use Test::More tests => 26;
+use Test::More tests => 30;
 
 BEGIN { use_ok 'Sub::Identify', ':all' }
 
@@ -34,7 +34,12 @@ is( join('*', get_code_info( \&slayer )), 'main*buffy' );
 is( join('*', get_code_info( \&human::william )), 'vamp*spike' );
 
 sub xander;
+sub vamp::drusilla;
 is( sub_name( \&xander ), 'xander', 'undefined subroutine' );
+is( sub_fullname( \&xander ), 'main::xander', 'undefined subroutine' );
+is( join('*', get_code_info( \&xander )), 'main*xander', 'undefined subroutine' );
+is( sub_name( \&vamp::drusilla ), 'drusilla', 'undefined subroutine' );
+is( sub_fullname( \&vamp::drusilla ), 'vamp::drusilla', 'undefined subroutine' );
 
 is( sub_name( sub {} ), '__ANON__' );
 my $anon = sub {};
