@@ -1,40 +1,50 @@
 package Sub::Identify;
 
-use B ();
 use Exporter;
 
-$VERSION = '0.03';
-@ISA = ('Exporter');
-%EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
+BEGIN {
+    $VERSION = '0.03';
+    @ISA = ('Exporter');
+    %EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
 
-use strict;
+    my $loaded = 0;
+    unless ($ENV{PERL_SUB_IDENTIFY_PP}) {
+        local $@;
+        eval {
+            if ($] >= 5.006) {
+                require XSLoader;
+                XSLoader::load(__PACKAGE__, $VERSION);
+            }
+            else {
+                require DynaLoader;
+                push @ISA, 'DynaLoader';
+                __PACKAGE__->bootstrap($VERSION);
+            }
+        };
 
-sub _cv {
-    my ($coderef) = @_;
-    ref $coderef or return undef;
-    my $cv = B::svref_2object($coderef);
-    $cv->isa('B::CV') ? $cv : undef;
+        die $@ if $@ && $@ !~ /object version|loadable object/;
+
+        $loaded = 1 unless $@;
+    }
+
+    $IsPurePerl = !$loaded;
+
+    if ($IsPurePerl) {
+        require B;
+        *get_code_info = sub ($) {
+            my ($coderef) = @_;
+            ref $coderef or return;
+            my $cv = B::svref_2object($coderef);
+            $cv->isa('B::CV') or return;
+
+            return ($cv->GV->STASH->NAME, $cv->GV->NAME);
+        };
+    }
 }
 
-sub sub_name {
-    my $cv = &_cv or return undef;
-    $cv->GV->NAME;
-}
-
-sub stash_name {
-    my $cv = &_cv or return undef;
-    $cv->GV->STASH->NAME;
-}
-
-sub sub_fullname {
-    my $cv = &_cv or return undef;
-    $cv->GV->STASH->NAME . '::' . $cv->GV->NAME;
-}
-
-sub get_code_info {
-    my $cv = &_cv or return undef;
-    ($cv->GV->STASH->NAME, $cv->GV->NAME);
-}
+sub stash_name   ($) { (get_code_info($_[0]))[0] }
+sub sub_name     ($) { (get_code_info($_[0]))[1] }
+sub sub_fullname ($) { join '::', get_code_info($_[0]) }
 
 1;
 

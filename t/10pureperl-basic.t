@@ -1,10 +1,12 @@
 #!perl
 
-use Test::More tests => 30;
+BEGIN { $ENV{PERL_SUB_IDENTIFY_PP} = 1 }
+
+use Test::More tests => 31;
 
 BEGIN { use_ok 'Sub::Identify', ':all' }
 
-diag "running pure-Perl version of Sub::Identify" if $Sub::Identify::IsPurePerl;
+ok($Sub::Identify::IsPurePerl, "running a pure-perl Sub::Identify");
 
 sub buffy { }
 sub vamp::spike { }
