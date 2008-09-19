@@ -1,11 +1,12 @@
 package Sub::Identify;
 
+use strict;
 use Exporter;
 
 BEGIN {
-    $VERSION = '0.04';
-    @ISA = ('Exporter');
-    %EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
+    our $VERSION = '0.04';
+    our @ISA = ('Exporter');
+    our %EXPORT_TAGS = (all => [ our @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
 
     my $loaded = 0;
     unless ($ENV{PERL_SUB_IDENTIFY_PP}) {
@@ -27,7 +28,7 @@ BEGIN {
         $loaded = 1 unless $@;
     }
 
-    $IsPurePerl = !$loaded;
+    our $IsPurePerl = !$loaded;
 
     if ($IsPurePerl) {
         require B;
