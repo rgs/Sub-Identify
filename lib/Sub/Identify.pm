@@ -3,7 +3,7 @@ package Sub::Identify;
 use Exporter;
 
 BEGIN {
-    $VERSION = '0.03';
+    $VERSION = '0.04';
     @ISA = ('Exporter');
     %EXPORT_TAGS = (all => [ @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
 
