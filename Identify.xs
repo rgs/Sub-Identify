@@ -28,7 +28,7 @@ get_code_info(coderef)
       pkg     = HvNAME( GvSTASH(CvGV(coderef)) );
 
       EXTEND(SP, 2);
-      PUSHs(newSVpvn(pkg, strlen(pkg)));
-      PUSHs(newSVpvn(name, strlen(name)));
+      PUSHs(sv_2mortal(newSVpvn(pkg, strlen(pkg))));
+      PUSHs(sv_2mortal(newSVpvn(name, strlen(name))));
     }
 
