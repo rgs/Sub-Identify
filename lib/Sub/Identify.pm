@@ -49,6 +49,9 @@ sub stash_name   ($) { (get_code_info($_[0]))[0] }
 sub sub_name     ($) { (get_code_info($_[0]))[1] }
 sub sub_fullname ($) { join '::', get_code_info($_[0]) }
 
+# TODO we could also return file and line of the code-ref
+# like Sub::Information does
+
 1;
 
 __END__
@@ -68,8 +71,7 @@ Sub::Identify - Retrieve names of code references
 
 =head1 DESCRIPTION
 
-C<Sub::Identify> allows you to retrieve the real name of code references. For
-this, it uses perl's introspection mechanism, provided by the C<B> module.
+C<Sub::Identify> allows you to retrieve the real name of code references.
 
 It provides four functions : C<sub_name> returns the name of the
 subroutine (or C<__ANON__> if it's an anonymous code reference),
@@ -83,9 +85,25 @@ by the speed.)
 In case of subroutine aliasing, those functions always return the
 original name.
 
+=head2 Pure-Perl version
+
+By default C<Sub::Identify> tries to load an XS implementation of the
+C<get_code_info> function, for speed; if that fails, or if the environment
+variable PERL_SUB_IDENTIFY_PP is defined to a true value, it will fall
+back to a pure perl implemenation, that uses perl's introspection mechanism,
+provided by the C<B> module.
+
+=head1 SEE ALSO
+
+L<Sub::Name>
+
+=head1 SOURCE
+
+A git repository for the sources is at L<https://github.com/rgs/Sub-Identify>.
+
 =head1 LICENSE
 
-(c) Rafael Garcia-Suarez (rgarciasuarez at gmail dot com) 2005, 2008
+(c) Rafael Garcia-Suarez (rgs at consttype dot org) 2005, 2008, 2012
 
 This program is free software; you may redistribute it and/or modify it under
 the same terms as Perl itself.
