@@ -90,7 +90,7 @@ original name.
 By default C<Sub::Identify> tries to load an XS implementation of the
 C<get_code_info> function, for speed; if that fails, or if the environment
 variable PERL_SUB_IDENTIFY_PP is defined to a true value, it will fall
-back to a pure perl implemenation, that uses perl's introspection mechanism,
+back to a pure perl implementation, that uses perl's introspection mechanism,
 provided by the C<B> module.
 
 =head1 SEE ALSO

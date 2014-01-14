@@ -7,7 +7,6 @@ use Sub::Identify ();
 
 sub MODIFY_CODE_ATTRIBUTES {
     my ($class, $subref, @attributed) = @_;
-    local $TODO = 1;
     is(Sub::Identify::sub_fullname($subref), 'main::foo', 'half compiled');
     return ();
 }
