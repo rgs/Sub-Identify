@@ -8,27 +8,21 @@ BEGIN {
     our @ISA = ('Exporter');
     our %EXPORT_TAGS = (all => [ our @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
 
-    my $loaded = 0;
+    our $IsPurePerl = 1;
     unless ($ENV{PERL_SUB_IDENTIFY_PP}) {
-        local $@;
-        eval {
-            if ($] >= 5.006) {
+        if (
+            eval {
                 require XSLoader;
                 XSLoader::load(__PACKAGE__, $VERSION);
+                1;
             }
-            else {
-                require DynaLoader;
-                push @ISA, 'DynaLoader';
-                __PACKAGE__->bootstrap($VERSION);
-            }
-        };
-
-        die $@ if $@ && $@ !~ /object version|loadable object/;
-
-        $loaded = 1 unless $@;
+        ) {
+            $IsPurePerl = 0;
+        }
+        else {
+            die $@ if $@ && $@ !~ /object version|loadable object/;
+        }
     }
-
-    our $IsPurePerl = !$loaded;
 
     if ($IsPurePerl) {
         require B;
