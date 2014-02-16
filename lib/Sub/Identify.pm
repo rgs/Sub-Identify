@@ -6,7 +6,11 @@ use Exporter;
 BEGIN {
     our $VERSION = '0.04';
     our @ISA = ('Exporter');
-    our %EXPORT_TAGS = (all => [ our @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info) ]);
+    our %EXPORT_TAGS = (
+        all => [
+            our @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info get_code_location)
+        ]
+    );
 
     our $IsPurePerl = 1;
     unless ($ENV{PERL_SUB_IDENTIFY_PP}) {
@@ -36,15 +40,20 @@ BEGIN {
 
             return ($cv->GV->STASH->NAME, $cv->GV->NAME);
         };
+        *get_code_location = sub ($) {
+            my ($coderef) = @_;
+            ref $coderef or return;
+            my $cv = B::svref_2object($coderef);
+            $cv->isa('B::CV') or return;
+
+            return ($cv->START->file, $cv->START->line);
+        };
     }
 }
 
 sub stash_name   ($) { (get_code_info($_[0]))[0] }
 sub sub_name     ($) { (get_code_info($_[0]))[1] }
 sub sub_fullname ($) { join '::', get_code_info($_[0]) }
-
-# TODO we could also return file and line of the code-ref
-# like Sub::Information does
 
 1;
 
