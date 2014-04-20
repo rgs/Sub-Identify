@@ -70,7 +70,7 @@ Sub::Identify - Retrieve names of code references
     my $p = stash_name( $some_coderef );
     my $fully_qualified_name = sub_fullname( $some_coderef );
     defined $subname
-	and print "this coderef points to sub $subname in package $p\n";
+    and print "this coderef points to sub $subname in package $p\n";
 
 =head1 DESCRIPTION
 

@@ -1,5 +1,6 @@
 MYMETA.*
 META.*
+MANIFEST
 Makefile
 Makefile.old
 *.bs
