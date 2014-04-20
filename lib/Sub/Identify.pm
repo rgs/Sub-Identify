@@ -16,19 +16,18 @@ BEGIN {
     unless ($ENV{PERL_SUB_IDENTIFY_PP}) {
         if (
             eval {
-                require XSLoader;
-                XSLoader::load(__PACKAGE__, $VERSION);
-                1;
+                require Sub::Identify::XS;
             }
         ) {
+            Sub::Identify::XS->import(':all');
             $IsPurePerl = 0;
         }
-        else {
-            die $@ if $@ && $@ !~ /object version|loadable object/;
+        elsif (! ($@ && $@ =~ m{\ACan't locate Sub/Identify/XS\.pm })) {
+            die $@;
         }
     }
 
-    if ($IsPurePerl) {
+    if (!defined &get_code_info) {
         require B;
         *get_code_info = sub ($) {
             my ($coderef) = @_;
@@ -40,6 +39,10 @@ BEGIN {
 
             return ($cv->GV->STASH->NAME, $cv->GV->NAME);
         };
+    }
+
+    if (!defined &get_code_location) {
+        require B;
         *get_code_location = sub ($) {
             my ($coderef) = @_;
             ref $coderef or return;
@@ -70,7 +73,7 @@ Sub::Identify - Retrieve names of code references
     my $p = stash_name( $some_coderef );
     my $fully_qualified_name = sub_fullname( $some_coderef );
     defined $subname
-	and print "this coderef points to sub $subname in package $p\n";
+    and print "this coderef points to sub $subname in package $p\n";
 
 =head1 DESCRIPTION
 
