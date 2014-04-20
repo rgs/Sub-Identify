@@ -18,3 +18,4 @@ for ( \&newton, \&hooke ) {
     is( $file, 't/04codelocation.t' );
     is( $line, 7 );
 }
+1;
