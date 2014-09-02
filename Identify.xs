@@ -35,3 +35,19 @@ get_code_info(coderef)
                 /* sub is being compiled: bail out and return nothing. */
             }
         }
+
+void
+get_code_location(coderef)
+    SV* coderef
+    PREINIT:
+        char* file;
+        line_t line;
+    PPCODE:
+        if (SvOK(coderef) && SvROK(coderef) && SvTYPE(SvRV(coderef)) == SVt_PVCV) {
+            coderef = SvRV(coderef);
+            file = CvFILE(coderef);
+            line = CopLINE((const COP*)CvSTART(coderef));
+            EXTEND(SP, 2);
+            PUSHs(sv_2mortal(newSVpvn(file, strlen(file))));
+            PUSHs(sv_2mortal(newSViv(line)));
+        }

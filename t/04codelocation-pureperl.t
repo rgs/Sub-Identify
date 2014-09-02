@@ -1,5 +1,5 @@
 #!perl
-
+BEGIN { $ENV{PERL_SUB_IDENTIFY_PP} = 1 }
 use Test::More tests => 4;
 use Sub::Identify ':all';
 
@@ -15,6 +15,6 @@ sub newton {
 *hooke = *newton;
 for ( \&newton, \&hooke ) {
     my ($file, $line) = get_code_location($_);
-    is( $file, 't/04codelocation.t', 'file' );
+    is( $file, 't/04codelocation-pureperl.t', 'file' );
     is( $line, 7, 'line' );
 }
