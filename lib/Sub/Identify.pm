@@ -44,7 +44,8 @@ BEGIN {
             my ($coderef) = @_;
             ref $coderef or return;
             my $cv = B::svref_2object($coderef);
-            $cv->isa('B::CV') or return;
+            $cv->isa('B::CV') && $cv->START->isa('B::COP')
+                or return;
 
             return ($cv->START->file, $cv->START->line);
         };

@@ -1,6 +1,6 @@
 #!perl
 
-use Test::More tests => 4;
+use Test::More tests => 6;
 use Sub::Identify ':all';
 
 sub newton {
@@ -17,4 +17,10 @@ for ( \&newton, \&hooke ) {
     my ($file, $line) = get_code_location($_);
     is( $file, 't/04codelocation.t', 'file' );
     is( $line, 7, 'line' );
+}
+{
+    sub pauli;
+    my ($file, $line) = get_code_location(\&pauli);
+    ok( !defined $file, 'no definition, no file' );
+    ok( !defined $line, 'no definition, no line' );
 }
