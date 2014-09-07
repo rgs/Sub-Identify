@@ -8,7 +8,14 @@ BEGIN {
     our @ISA = ('Exporter');
     our %EXPORT_TAGS = (
         all => [
-            our @EXPORT_OK = qw(sub_name stash_name sub_fullname get_code_info get_code_location)
+            our @EXPORT_OK = qw(
+                sub_name
+                stash_name
+                sub_fullname
+                get_code_info
+                get_code_location
+                is_sub_constant
+            )
         ]
     );
 
@@ -48,6 +55,15 @@ BEGIN {
                 or return;
 
             return ($cv->START->file, $cv->START->line);
+        };
+        *is_sub_constant = sub ($) {
+            my ($coderef) = @_;
+            ref $coderef or return 0;
+            my $cv = B::svref_2object($coderef);
+            $cv->isa('B::CV') or return 0;
+            my $p = prototype $coderef;
+            defined $p && $p eq "" or return 0;
+            return ($cv->CvFLAGS & B::CVf_CONST()) == B::CVf_CONST();
         };
     }
 }

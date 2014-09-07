@@ -1,4 +1,4 @@
-- Add new function `is_constant_sub`
+- Add XS implemetation of `is_constant_sub`
 
         use B; use Scalar::Util qw(reftype); sub is_constant { my $ref= shift; my $o; return (reftype($ref) && (reftype($ref) eq "CODE") && defined(prototype($ref)) && (prototype($ref) eq "") && ($o= B::svref_2object($ref)) && (($o->CvFLAGS & B::CVf_CONST) == B::CVf_CONST)); }
 
