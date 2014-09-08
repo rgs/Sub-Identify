@@ -53,3 +53,16 @@ get_code_location(coderef)
                 PUSHs(sv_2mortal(newSViv(line)));
             }
         }
+
+bool
+is_sub_constant(coderef)
+    SV* coderef
+    CODE:
+        if (SvOK(coderef) && SvROK(coderef) && SvTYPE(SvRV(coderef)) == SVt_PVCV) {
+            coderef = SvRV(coderef);
+            RETVAL = CvPROTO(coderef) && CvPROTOLEN(coderef) == 0 && CvCONST(coderef);
+        }
+        else
+            RETVAL = 0;
+    OUTPUT:
+        RETVAL
