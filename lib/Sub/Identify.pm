@@ -87,7 +87,10 @@ Sub::Identify - Retrieve names of code references
     my $p = stash_name( $some_coderef );
     my $fully_qualified_name = sub_fullname( $some_coderef );
     defined $subname
-	and print "this coderef points to sub $subname in package $p\n";
+        and say "this coderef points to sub $subname in package $p";
+    my ($file, $line) = get_code_location( $some_coderef );
+    is_sub_constant( $some_coderef )
+        and say "this coderef points to a constant subroutine";
 
 =head1 DESCRIPTION
 
@@ -115,6 +118,9 @@ provided by the C<B> module.
 
 =head1 SEE ALSO
 
+L<Sub::Util>, part of the module distribution L<Scalar::List::Utils>
+since version 1.40.
+
 L<Sub::Name>
 
 =head1 SOURCE
@@ -123,7 +129,7 @@ A git repository for the sources is at L<https://github.com/rgs/Sub-Identify>.
 
 =head1 LICENSE
 
-(c) Rafael Garcia-Suarez (rgs at consttype dot org) 2005, 2008, 2012
+(c) Rafael Garcia-Suarez (rgs at consttype dot org) 2005, 2008, 2012, 2014
 
 This program is free software; you may redistribute it and/or modify it under
 the same terms as Perl itself.

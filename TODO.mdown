@@ -1,3 +1,1 @@
-- Add docs for new functions
-- Point to Sub::Util in docs
 - Add README.mdown
