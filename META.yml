@@ -16,4 +16,4 @@ no_index:
     - inc
 resources:
   repository: https://github.com/rgs/Sub-Identify.git
-version: '0.05'
+version: '0.06'

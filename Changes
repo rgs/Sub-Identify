@@ -1,3 +1,9 @@
+0.06- Rafael Garcia-Suarez (4):
+      Remove perl version requirement
+      Skip tests that rely on perls more recent than 5.14.0
+      Update ppport.h
+      Use the pure-perl version of is_sub_constant on perls earlier than 5.16
+
 0.05- Rafael Garcia-Suarez (13):
       Add test for function prototypes
       Require at least perl 5.14.1
