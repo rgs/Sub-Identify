@@ -54,6 +54,8 @@ get_code_location(coderef)
             }
         }
 
+#if PERL_VERSION >= 16
+
 bool
 is_sub_constant(coderef)
     SV* coderef
@@ -66,3 +68,5 @@ is_sub_constant(coderef)
             RETVAL = 0;
     OUTPUT:
         RETVAL
+
+#endif
