@@ -1,3 +1,18 @@
+0.05- Rafael Garcia-Suarez (13):
+      Add test for function prototypes
+      Require at least perl 5.14.1
+      Better, simpler code for testing if we can load the XS version
+      Add gitignore file
+      Experimental implementation of get_code_location
+      Add XS implementation of get_code_location()
+      Add test for the prototype of get_code_location
+      Make get_code_location work on undefined subs
+      Add link to github repo in the meta file
+      Add TODO file
+      Add pure-perl implementation of is_sub_constant()
+      Add XS implemetation of is_constant_sub()
+      Add documentation
+
 0.04- Rafael Garcia-Suarez (9):
       First stab as a dual implementation XS / pure Perl
       Update MANIFEST and add ppport.h from bleadperl

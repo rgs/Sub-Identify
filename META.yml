@@ -1,13 +1,19 @@
---- #YAML:1.0
-name:                Sub-Identify
-version:             0.04
-abstract:            ~
-license:             perl
-author:              ~
-generated_by:        ExtUtils::MakeMaker version 6.42
-distribution_type:   module
-requires:     
-    Test::More:                    0
+---
+abstract: 'Retrieve names of code references'
+author:
+  - unknown
+build_requires: {}
+dynamic_config: 1
+generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.140640'
+license: perl
 meta-spec:
-    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
-    version: 1.3
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: Sub-Identify
+no_index:
+  directory:
+    - t
+    - inc
+resources:
+  repository: https://github.com/rgs/Sub-Identify.git
+version: '0.05'
