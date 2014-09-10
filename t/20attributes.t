@@ -1,5 +1,12 @@
 #!perl
 
+BEGIN {
+    if ($] < 5.014001) {
+        print "1..0 # SKIP: tests won't pass on less recent perls\n";
+        exit;
+    }
+}
+
 use Test::More tests => 3;
 use strict;
 use warnings;
