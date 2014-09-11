@@ -58,6 +58,7 @@ BEGIN {
         };
     }
     if ($IsPurePerl || $] < 5.016) {
+        require B;
         *is_sub_constant = sub ($) {
             my ($coderef) = @_;
             ref $coderef or return 0;
