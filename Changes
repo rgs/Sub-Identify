@@ -1,3 +1,6 @@
+0.07- Rafael Garcia-Suarez (1):
+      Require B unconditionally on older perls
+
 0.06- Rafael Garcia-Suarez (4):
       Remove perl version requirement
       Skip tests that rely on perls more recent than 5.14.0
