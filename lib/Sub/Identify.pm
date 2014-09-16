@@ -99,30 +99,39 @@ Sub::Identify - Retrieve names of code references
 
 C<Sub::Identify> allows you to retrieve the real name of code references.
 
-It provides four functions : C<sub_name> returns the name of the
-subroutine (or C<__ANON__> if it's an anonymous code reference),
+It provides six functions, all of them taking a code reference.
+
+C<sub_name> returns the name of the code reference passed as an
+argument (or C<__ANON__> if it's an anonymous code reference),
 C<stash_name> returns its package, and C<sub_fullname> returns the
 concatenation of the two.
 
-The fourth function, C<get_code_info>, returns a list of two elements,
-the package and the subroutine name (in case of you want both and are worried
-by the speed.)
+C<get_code_info> returns a list of two elements, the package and the
+subroutine name (in case of you want both and are worried by the speed.)
 
 In case of subroutine aliasing, those functions always return the
 original name.
 
+C<get_code_location> returns a two-element list containing the file
+name and the line number where the subroutine has been defined.
+
+C<is_sub_constant> returns a boolean value indicating whether the
+subroutine is a constant or not.
+
 =head2 Pure-Perl version
 
 By default C<Sub::Identify> tries to load an XS implementation of the
-C<get_code_info> function, for speed; if that fails, or if the environment
-variable PERL_SUB_IDENTIFY_PP is defined to a true value, it will fall
+C<get_code_info>, C<get_code_location> and (on perl versions 5.16.0 and later)
+C<is_sub_constant> functions, for speed; if that fails, or if the environment
+variable C<PERL_SUB_IDENTIFY_PP> is defined to a true value, it will fall
 back to a pure perl implementation, that uses perl's introspection mechanism,
 provided by the C<B> module.
 
 =head1 SEE ALSO
 
 L<Sub::Util>, part of the module distribution L<Scalar::List::Utils>
-since version 1.40.
+since version 1.40. Since this will be a core module starting with perl
+5.22.0, it is encouraged to migrate to Sub::Util when possible.
 
 L<Sub::Name>
 
