@@ -1,3 +1,7 @@
+0.08- Rafael Garcia-Suarez (2):
+      Require at least perl 5.8.0
+      Improve docs beyond a really terse synopsis
+
 0.07- Rafael Garcia-Suarez (1):
       Require B unconditionally on older perls
 
