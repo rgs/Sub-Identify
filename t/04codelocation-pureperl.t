@@ -15,7 +15,7 @@ sub newton {
 *hooke = *newton;
 for ( \&newton, \&hooke ) {
     my ($file, $line) = get_code_location($_);
-    is( $file, 't/04codelocation-pureperl.t', 'file' );
+    is( $file, $0, 'file' );
     is( $line, 7, 'line' );
 }
 {
