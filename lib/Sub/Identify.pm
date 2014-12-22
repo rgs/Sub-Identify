@@ -87,11 +87,14 @@ Sub::Identify - Retrieve names of code references
 
     use Sub::Identify ':all';
     my $subname = sub_name( $some_coderef );
-    my $p = stash_name( $some_coderef );
+    my $packagename = stash_name( $some_coderef );
+    # or, to get all at once...
     my $fully_qualified_name = sub_fullname( $some_coderef );
     defined $subname
-        and say "this coderef points to sub $subname in package $p";
+        and say "this coderef points to sub $subname in package $packagename";
     my ($file, $line) = get_code_location( $some_coderef );
+    $file
+        and say "this coderef is defined at line $line in file $file";
     is_sub_constant( $some_coderef )
         and say "this coderef points to a constant subroutine";
 
