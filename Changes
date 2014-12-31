@@ -1,3 +1,6 @@
+0.09- A. Sinan Unur (1):
+      Fix test failure due to hard-coded filenames.
+
 0.08- Rafael Garcia-Suarez (2):
       Require at least perl 5.8.0
       Improve docs beyond a really terse synopsis
