@@ -2,15 +2,15 @@
 
 use strict;
 
-use Test::More tests => 30;
-
 BEGIN {
     if ( $] < 5.020000 ) {
         print "1..0 # SKIP: tests won't pass perls before 5.20.0 due to requirement for signatures\n";
         exit;
     }
-    use_ok 'Sub::Identify', ':all';
 }
+
+use Test::More tests => 30;
+BEGIN { use_ok 'Sub::Identify', ':all'; }
 
 diag "running pure-Perl version of Sub::Identify" if $Sub::Identify::IsPurePerl;
 
