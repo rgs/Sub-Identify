@@ -45,7 +45,7 @@ get_code_location(coderef)
     PPCODE:
         if (SvOK(coderef) && SvROK(coderef) && SvTYPE(SvRV(coderef)) == SVt_PVCV) {
             coderef = SvRV(coderef);
-            if (CvSTART(coderef)) {
+            if (CvSTART(coderef) && !CvISXSUB(coderef)) {
                 file = CvFILE(coderef);
                 line = CopLINE((const COP*)CvSTART(coderef));
                 EXTEND(SP, 2);
