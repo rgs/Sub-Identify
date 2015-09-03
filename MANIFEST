@@ -9,6 +9,7 @@ t/04codelocation-pureperl.t
 t/05constant.t
 t/05constant-pureperl.t
 t/06codelocxs.t
+t/06codelocxs-pureperl.t
 t/10pureperl-basic.t
 t/pod.t
 t/20attributes.t
