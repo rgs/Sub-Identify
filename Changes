@@ -1,3 +1,18 @@
+0.11- B. Estrade (1):
+      Adding new test for signatures as part of Feb 2015 PRC.
+
+      Rafael Garcia-Suarez (8):
+      Bump version to 0.10
+      Merge pull request #6 from estrabd/Issue-5-add-signature-test
+      Fix skipping tests on earliers perls
+      Add new test to MANIFEST
+      Do not let get_code_location() segfault on XSUBs
+      Add a test for calling get_code_location on XSUBs
+      Add a pure-perl version of last test
+      Bump version
+
+0.10- No changes
+
 0.09- A. Sinan Unur (1):
       Fix test failure due to hard-coded filenames.
 
