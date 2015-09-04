@@ -1,8 +1,11 @@
-
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
 #include "ppport.h"
+
+#ifndef CvISXSUB
+#   define CvISXSUB(cv) CvXSUB(cv)
+#endif
 
 /*
 get_code_info:
