@@ -4,7 +4,7 @@ use strict;
 use Exporter;
 
 BEGIN {
-    our $VERSION = '0.10';
+    our $VERSION = '0.11';
     our @ISA = ('Exporter');
     our %EXPORT_TAGS = (
         all => [
@@ -144,7 +144,7 @@ A git repository for the sources is at L<https://github.com/rgs/Sub-Identify>.
 
 =head1 LICENSE
 
-(c) Rafael Garcia-Suarez (rgs at consttype dot org) 2005, 2008, 2012, 2014
+(c) Rafael Garcia-Suarez (rgs at consttype dot org) 2005, 2008, 2012, 2014, 2015
 
 This program is free software; you may redistribute it and/or modify it under
 the same terms as Perl itself.
