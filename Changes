@@ -1,3 +1,7 @@
+0.12- Rafael Garcia-Suarez (2):
+      Update changes for 0.11
+      Fix build on perl 5.8
+
 0.11- B. Estrade (1):
       Adding new test for signatures as part of Feb 2015 PRC.
 
