@@ -1,1 +1,3 @@
+- There are duplicated tests, that differ only by the fact that they select
+  the pure-perl or the XS version. Their source should be merged.
 - Clean up version tests and API usage
