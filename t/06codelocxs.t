@@ -11,6 +11,9 @@ my ($file, $line);
 ok !defined $file;
 ok !defined $line;
 
-($file, $line) = get_code_location \&Sub::Identify::get_code_location;
-ok !defined $file;
-ok !defined $line;
+SKIP: {
+    skip('get_code_location() is a perl sub', 2) if ($0 =~ m/pureperl/);
+    ($file, $line) = get_code_location \&Sub::Identify::get_code_location;
+    ok !defined $file;
+    ok !defined $line;
+}
