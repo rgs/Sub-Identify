@@ -1,10 +1,11 @@
 #!perl
 
-use Test::More tests => 30;
+use Test::More tests => 31;
 
 BEGIN { use_ok 'Sub::Identify', ':all' }
 
-diag "running pure-Perl version of Sub::Identify" if $Sub::Identify::IsPurePerl;
+my $expected_pureperl = $0 =~ m/pureperl/ + 0;
+is($Sub::Identify::IsPurePerl, $expected_pureperl, "pure-perl Sub::Identify flag is $expected_pureperl");
 
 sub buffy { }
 sub vamp::spike { }

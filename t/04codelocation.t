@@ -15,7 +15,7 @@ sub newton {
 *hooke = *newton;
 for ( \&newton, \&hooke ) {
     my ($file, $line) = get_code_location($_);
-    is( $file, $0, 'file' );
+    is( $file, __FILE__, 'file' );
     is( $line, 7, 'line' );
 }
 {
