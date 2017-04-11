@@ -4,7 +4,7 @@ use strict;
 use Exporter;
 
 BEGIN {
-    our $VERSION = '0.13';
+    our $VERSION = '0.14';
     our @ISA = ('Exporter');
     our %EXPORT_TAGS = (
         all => [

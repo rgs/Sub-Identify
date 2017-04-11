@@ -1,5 +1,8 @@
 Revision history for CPAN module Sub::Identify
 
+0.14 2017-04-11 RGARCIA
+    - Make tests pass without . in @INC (actual fix, by James E Keenan)
+
 0.13 2017-04-02 RGARCIA
     - Reformatted Changes to follow basic format in CPAN::Changes::Spec
     - Make tests pass without . in @INC
